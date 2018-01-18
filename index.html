@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>React для «чайников»</title>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="shower/themes/material/styles/screen-16x10.css">
+</head>
+<body class="shower list">
+
+	<header class="caption">
+		<h1>React для «чайников»</h1>
+		<p>Владимир Кузнецов</p>
+	</header>
+
+	<section class="slide">
+		<figure>
+			<img class="cover" src="pictures/react-for-dummies.png">
+		</figure>
+	</section>
+
+	<section class="slide">
+		<h2 class="shout">React&nbsp;&mdash; это библиотека для создания&nbsp;UI</h2>
+	</section>
+
+	<section class="slide">
+		<h2>План</h2>
+		<ol>
+			<li>JSX</li>
+			<li>Новый синтаксис в JS</li>
+			<li>React Native</li>
+			<li>Инструменты отладки</li>
+			<li class="next"><strong>Бонус:</strong> Компоненты высшего порядка</li>
+		</ol>
+	</section>
+
+	<section class="slide">
+		<h2 class="shout">JSX</h2>
+	</section>
+
+	<section class="slide">
+		<figure>
+			<img class="cover" src="pictures/example-jsx.png">
+		</figure>
+	</section>
+
+	<section class="slide">
+		<div>
+			<pre>
+				<code>&lt;div/></code>
+				<code>React.createElement(&quot;div&quot;, null)</code>
+			</pre>
+		</div>
+		<div class="next">
+			<pre>
+				<code>&lt;img src=&quot;picture.jpg&quot;></code>
+				<code>React.createElement(&quot;img&quot;, {src: &quot;picture.jpg&quot;})</code>
+			</pre>
+		</div>
+		<div class="next">
+			<pre>
+				<code>&lt;div>&lt;img src=&quot;picture.jpg&quot;>&lt;/div></code>
+				<code>React.createElement(&quot;div&quot;, null,</code>
+				<code>  React.createElement(&quot;img&quot;, {src: &quot;picture.jpg&quot;})</code>
+				<code>)</code>
+			</pre>
+		</div>
+	</section>
+
+	<section class="slide">
+		<h2>Соглашение по именованию</h2>
+		<p>Встроенные компоненты: &lt;<mark>div</mark>&gt;,
+			&lt;<mark>h1</mark>&gt;, &lt;<mark>ul</mark>&gt;,
+			&lt;<mark>li</mark>&gt;&hellip;</p>
+		<p>Пользовательские компоненты: &lt;<mark>List</mark>&gt;, &lt;<mark>Item</mark>&gt;&hellip;</p>
+		<p class="next">Пользовательские компоненты могут ссылаться на&nbsp;любую доступную функцию или класс.
+			Например, &lt;<mark>MyLib.Button</mark>&gt;</p>
+	</section>
+
+	<section class="slide">
+		<div>
+			<h2>Встроенная компонента</h2>
+			<pre>
+				<code>&lt;div/></code>
+				<code>React.createElement(&quot;div&quot;, null)</code>
+			</pre>
+		</div>
+		<div style="margin-top: 2em">
+			<h2>Пользовательская компонента</h2>
+			<pre>
+				<code>&lt;SubmitButton/></code>
+				<code>React.createElement(SubmitButton, null)</code>
+			</pre>
+		</div>
+	</section>
+
+	<section class="slide">
+		<h2 class="shout">Классовая компонента</h2>
+	</section>
+
+	<section class="slide">
+		<figure>
+			<img class="cover" src="pictures/example-class-component.png">
+		</figure>
+	</section>
+
+	<section class="slide">
+		<h2 class="shout">Функциональная компонента</h2>
+	</section>
+
+	<section class="slide">
+		<figure>
+			<img class="cover" src="pictures/example-functional-component.png">
+		</figure>
+	</section>
+
+	<section class="slide">
+		<h2 class="shout">Чистые или обычные компоненты</h2>
+	</section>
+
+	<section class="slide">
+		<pre>
+			<code>const Item = props => (</code>
+			<code>  &lt;div>{props.title}&lt;/div></code>
+			<code>);</code>
+		</pre>
+		<pre>
+			<code>class PureItem extends PureComponent {</code>
+			<code>  render() {</code>
+			<code>    return &lt;div>{this.props.title}&lt;/div></code>
+			<code>  }</code>
+			<code>}</code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2 class="shout">Тупые и умные компоненты</h2>
+	</section>
+
+	<section class="slide">
+		<h2 class="shout">ES2015,<br>ES2016,<br>ES2017&hellip;</h2>
+	</section>
+
+	<section class="slide">
+		<h2>Новый синтаксис в JS</h2>
+		<ul>
+			<li>Fat arrows</li>
+			<li>Shorthand property names</li>
+			<li>Object destruction</li>
+			<li>Rest/Spread operator</li>
+			<li>Template literals</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Fat arrows</h2>
+		<pre>
+			<code>function sum(a, b) {</code>
+			<code>  return a + b;</code>
+			<code>}</code>
+		</pre>
+		<pre>
+			<code>const sum = (a, b) => a + b;</code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Fat arrows</h2>
+		<p>Скобки вокруг одного аргумента опциональны</p>
+		<pre>
+			<code>a => a;</code>
+			<code>(a) => a;</code>
+		</pre>
+		<div class="next">
+			<p>Скобки вокруг двух и более аргументов обязательны</p>
+			<pre>
+				<code>(a, b) => a + b;</code>
+				<code class="next">() => true;</code>
+			</pre>
+		</div>
+	</section>
+
+	<section class="slide">
+		<h2>Fat arrows</h2>
+		<pre><code>() => true;</code></pre>
+		<pre class="next"><code>() => { alert('Error!!!'); }</code></pre>
+		<pre class="next"><code>() => ({ text: 'Hello!' })</code></pre>
+	</section>
+
+	<section class="slide">
+		<h2>Shorthand property names</h2>
+		<pre>
+			<code>const width = 10, height = 5, depth = 3;</code>
+			<code>const box = {width, height, depth};</code>
+			<code><span class="comment">// const box = {</span></code>
+			<code><span class="comment">//   width: width,</span></code>
+			<code><span class="comment">//   height: height,</span></code>
+			<code><span class="comment">//   depth: depth</span></code>
+			<code><span class="comment">// };</span></code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Object destruction</h2>
+		<pre>
+			<code><span class="comment">// const box = {width: 10, height: 5, depth: 3};</span></code>
+			<code>const {width, height, depth} = box;</code>
+			<code><span class="comment">// const width = box.width,</span></code>
+			<code><span class="comment">//   height = box.height,</span></code>
+			<code><span class="comment">//   depth = box.depth;</span></code>
+		</pre>		
+	</section>
+
+	<section class="slide">
+		<h2>Rest/Spread operator</h2>
+		<pre><code>...</code></pre>
+	</section>
+
+	<section class="slide">
+		<h2>Spread operator</h2>
+		<pre>
+			<code>const size = {width: 10, height: 5};</code>
+			<code>const extraSize = {depth: 3};</code>
+			<code>const box = {...size, ...extraSize};</code>
+			<code><span class="comment">// box === {width: 10, height: 5, depth: 3};</span></code>
+			<code class="next">const specialBox = {depth: 4, ...size, width: 8};</code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Rest operator</h2>
+		<pre>
+			<code><span class="comment">// const box = {width: 10, height: 5, depth: 3};</span></code>
+			<code>const {depth, ...size} = box;</code>
+			<code><span class="comment">// depth === 3</span></code>
+			<code><span class="comment">// size === {width: 10, height: 5}</span></code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Template literals</h2>
+		<pre>
+			<code>const str = `Volume: ${volume}`;</code>
+			<code><span class="comment">// const str = &quot;Volume: &quot; + volume;</span></code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>На практике</h2>
+		<pre>
+			<code>&lt;Box</code>
+			<code>  width={box.width}</code>
+			<code>  height={box.height}</code>
+			<code>  depth={box.depth}</code>
+			<code>/></code>
+			<code>&lt;Box {...box}/></code>
+			<code>&lt;Box {...box} depth={4}/></code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>На практике</h2>
+		<pre>
+			<code>const Box = ({width, height, depth, ...rest}) => {</code>
+			<code>  const volume = width * height * depth;</code>
+			<code>  return (</code>
+			<code>    &lt;div {...rest}>{`Volume: ${volume}`}&lt;/div></code>
+			<code>  );</code>
+			<code>}</code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2 class="shout">React Native</h2>
+	</section>
+
+	<section class="slide">
+		<figure>
+			<img class="cover" src="pictures/example-react-native.png">
+		</figure>
+	</section>
+
+	<section class="slide">
+		<h2>Основные компоненты</h2>
+		<ul>
+			<li>View &mdash; базовый блок;</li>
+			<li>Text &mdash; текстовый блок;</li>
+			<li>Image &mdash; картинка;</li>
+			<li>ScrollView, FlatList, SectionList &mdash; списки;</li>
+			<li>много других.</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Нет CSS-классов, есть только стили</h2>
+		<pre>
+			<code>&lt;View style={</code>
+			<code>  {width: 100, height: 50}</code>
+		    <code>}/></code>
+			<code>&lt;View style={</code>
+			<code>  {width: 100, height: 50, backgroundColor: &quot;skyblue&quot;}</code>
+			<code>}/></code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Нет CSS-классов, есть только стили</h2>
+		<pre>
+			<code>const styles = StyleSheet.create({</code>
+			<code>  box: {width: 100, height: 100},</code>
+			<code>  coloredBox: {backgroundColor: &quot;skyblue&quot;}</code>
+			<code>});</code>
+		</pre>
+		<pre>
+			<code>&lt;View style={styles.box}/></code>
+			<code>&lt;View style={[styles.box, styles.coloredBox]}/></code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2 class="shout">Отладка</h2>
+	</section>
+
+	<section class="slide">
+		<figure>
+			<img class="cover" src="pictures/devtools-chrome.png">
+		</figure>
+	</section>
+
+	<section class="slide">
+		<figure>
+			<img class="cover" src="pictures/external-devtools.png">
+		</figure>
+	</section>
+
+	<section class="slide">
+		<h2>React Developer Tools</h2>
+		<p><a href="https://github.com/facebook/react-devtools">https://github.com/facebook/react-devtools</a></p>
+		<p><a href="https://20vr0l9jx0.codesandbox.io/">List of Star Wars characters</a></p>
+	</section>
+
+	<section class="slide">
+		<h2 class="shout">Компоненты высшего<br>порядка</h2>
+	</section>
+
+	<section class="slide">
+		<h2>Функции высшего порядка</h2>
+		<pre>
+			<code>function sum(a) {</code>
+			<code>  return function (b) {</code>
+			<code>    return a + b;</code>
+			<code>  }</code>
+			<code>}</code>
+		</pre>
+		<pre class="next">
+			<code>const sum = a => b => a + b;</code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>const sum = a => b => a + b;</h2>
+		<pre>
+			<code>const sum10 = sum(10);</code>
+			<code>sum10(5) === 15</code>
+			<code>sum10(11) === 21</code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<figure>
+			<img class="cover" src="pictures/example-hoc-uppercaser.png">
+		</figure>
+	</section>
+
+	<section class="slide">
+		<figure>
+			<img class="cover" src="pictures/example-hoc-emphasize.png">
+		</figure>
+	</section>
+
+	<section class="slide">
+		<figure>
+			<img class="cover" src="pictures/example-hoc-composition1.png">
+		</figure>
+	</section>
+
+	<section class="slide">
+		<h2>Композиция функций</h2>
+		<pre>
+			<code>const sum = a => b => a + b;</code>
+			<code>const mul = a => b => a * b;</code>
+			<code><span class="comment">// x * 2 + 3</span></code>
+			<code>const formula = compose(sum(3), mul(2));</code>
+			<code>formula(5) === 13</code>
+		</pre>
+	</section>
+
+
+	<section class="slide">
+		<figure>
+			<img class="cover" src="pictures/example-hoc-composition2.png">
+		</figure>
+	</section>
+
+	<section class="slide">
+		<figure>
+			<img class="cover" src="pictures/level-up.png" style="height: 100%; max-width: none;">
+		</figure>
+	</section>
+
+	<section class="slide">
+		<h2>Заключение</h2>
+		<ul>
+			<li>JSX — сахарок вокруг вызова функций</li>
+			<li>Новый синтаксис в JS — пишем меньше букв</li>
+			<li>React Native — пишем UI для мобил на JS</li>
+			<li>Инструменты отладки — без проблем инспектим код</li>
+			<li>Компоненты высшего порядка — мозг взрывается, но только 1 раз</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2 class="shout">Спасибо!</h2>
+	</section>
+
+	<footer class="badge">
+		<a href="https://github.com/shower/shower">Fork me on GitHub</a>
+	</footer>
+
+	<div class="progress"></div>
+
+	<script src="shower/shower.min.js"></script>
+	<!-- Copyright © 2017 Yours Truly, Famous Inc. -->
+
+</body>
+</html>
